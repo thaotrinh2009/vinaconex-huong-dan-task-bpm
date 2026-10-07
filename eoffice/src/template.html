@@ -1,0 +1,317 @@
+<title>Hướng dẫn E-office VPTCT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky role bar on top, table of contents left, one reading column of step cards with annotated real screenshots */
+:root{
+  --bg:#f3f6fa; --paper:#ffffff; --ink:#122038; --mute:#56657d; --line:#d9e1ec; --soft:#e9eff7;
+  --navy:#003989; --accent:#0a5bd3; --mk:#e23b2e; --mk-ink:#ffffff; --ok:#13865a; --warn:#b4600a; --warnbg:#fff4e5;
+  --r-vanthu:#0a5bd3; --r-thuky:#7a3fd1; --r-lanhdao:#c2410c; --r-donvi:#0f8a5f; --r-nguoisoan:#b0236b; --r-quantri:#475569;
+  --f-disp:"Lexend",system-ui,sans-serif; --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --shadow:0 1px 2px rgba(10,30,70,.06),0 6px 20px rgba(10,30,70,.06);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c1320; --paper:#131d2e; --ink:#e6edf8; --mute:#9aabc4; --line:#26354d; --soft:#1a2740;
+  --navy:#8fb4ff; --accent:#6ea3ff; --mk:#ff5a4c; --mk-ink:#140b0a; --ok:#4cc999; --warn:#f3a64a; --warnbg:#2a1f10;
+  --r-vanthu:#6ea3ff; --r-thuky:#b48cff; --r-lanhdao:#ff9a5c; --r-donvi:#4cc999; --r-nguoisoan:#ff7ab8; --r-quantri:#a3b2c7;
+  --shadow:0 1px 2px rgba(0,0,0,.3); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1320; --paper:#131d2e; --ink:#e6edf8; --mute:#9aabc4; --line:#26354d; --soft:#1a2740;
+  --navy:#8fb4ff; --accent:#6ea3ff; --mk:#ff5a4c; --mk-ink:#140b0a; --ok:#4cc999; --warn:#f3a64a; --warnbg:#2a1f10;
+  --r-vanthu:#6ea3ff; --r-thuky:#b48cff; --r-lanhdao:#ff9a5c; --r-donvi:#4cc999; --r-nguoisoan:#ff7ab8; --r-quantri:#a3b2c7;
+  --shadow:0 1px 2px rgba(0,0,0,.3); color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--f-body);padding-inline:16px}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--f-disp);text-wrap:balance;margin:0;line-height:1.25}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-inline:-16px;padding:10px 16px;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.brand{font:600 15px var(--f-disp);color:var(--navy);display:flex;gap:8px;align-items:center;white-space:nowrap}
+.brand i{font-style:normal;color:var(--mute);font-weight:500}
+.roles{display:flex;gap:6px;flex-wrap:wrap;align-items:center;flex:1;min-width:0}
+.roles .lb{font-size:12px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase;margin-right:2px}
+.chip{font:600 13px var(--f-body);border:1px solid color-mix(in srgb,var(--c) 55%,var(--paper));background:color-mix(in srgb,var(--c) 12%,var(--paper));color:var(--c);border-radius:999px;padding:4px 11px 4px 9px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.chip:hover{border-color:var(--c)}
+.chip[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--paper)}
+.chip[aria-pressed="true"]::before{background:var(--paper)}
+.tbtn{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:5px 10px;font:500 13px var(--f-body);cursor:pointer}
+.wrap{max-width:1240px;margin-inline:auto;display:grid;grid-template-columns:230px minmax(0,1fr);gap:36px;padding-block:28px 80px}
+.toc{position:sticky;top:96px;align-self:start;max-height:calc(100vh - 110px);overflow:auto;display:flex;flex-direction:column;gap:2px;font-size:13.5px;padding-right:6px}
+.toc .tl{font:600 12px var(--f-disp);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+.toc a{color:var(--ink);text-decoration:none;padding:4px 8px;border-radius:6px}
+.toc a:hover{background:var(--soft)}
+.toc a.s{padding-left:20px;color:var(--mute);font-size:13px}
+.toc a.dim{opacity:.35}
+main{min-width:0}
+.hero{display:grid;gap:18px;padding-block:8px 28px;border-bottom:1px solid var(--line)}
+.eyebrow{font:600 12px var(--f-disp);letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
+.hero h1{font-size:clamp(28px,4vw,40px);font-weight:700;color:var(--ink)}
+.hero p.lead{max-width:68ch;margin:0;color:var(--mute);font-size:16px}
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.path{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px;text-decoration:none;color:var(--ink);display:grid;gap:4px}
+.path b{font:600 15px var(--f-disp)}
+.path span{color:var(--mute);font-size:13.5px}
+.path:hover{border-color:var(--accent)}
+.quick{display:flex;flex-wrap:wrap;gap:8px;font-size:13.5px}
+.quick a{background:var(--soft);border-radius:6px;padding:4px 10px;text-decoration:none}
+section.part{padding-block:40px 8px}
+.ph{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.ph .rn{font:700 15px var(--f-mono);color:var(--paper);background:var(--navy);border-radius:6px;padding:2px 9px}
+.ph h2{font-size:26px}
+.intro{color:var(--mute);max-width:72ch;margin:0 0 18px}
+h3.sub{font-size:18px;margin:28px 0 10px}
+/* chevron overview */
+.ovw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.ov{display:grid;min-width:860px;font-size:13px}
+.ov .lane{font:600 11.5px var(--f-disp);letter-spacing:.06em;text-transform:uppercase;color:var(--mute);padding:10px;border-top:1px solid var(--line);display:flex;align-items:center}
+.ov .lane:first-child{border-top:0}
+.chev{position:relative;display:flex;gap:6px;align-items:center;margin:10px 0 10px -6px;padding:9px 18px 9px 20px;background:var(--c);color:var(--paper);text-decoration:none;font:600 13px/1.25 var(--f-disp);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%,12px 50%)}
+.chev span{font:600 11px var(--f-mono);opacity:.85}
+.ov .cell{padding:10px;border-top:1px solid var(--line);border-left:1px dashed var(--line)}
+.ov .cell.t{font-family:var(--f-mono);font-size:12.5px}
+.dimmable.dim,.chev.dim,.cell.dim{opacity:.3}
+/* matrix */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+thead th{font:600 12px var(--f-disp);color:var(--mute);background:var(--soft)}
+.mx td,.mx thead tr:nth-child(2) th{text-align:center;padding:6px 4px}
+.mx th.grp{text-align:center;color:var(--ink)}
+.mx thead a{text-decoration:none;font-family:var(--f-mono)}
+.dot{color:var(--c,var(--accent));font-size:16px}
+.dot.o{color:var(--c,var(--mute));opacity:.75}
+.legend .dot{--c:var(--mute)}
+.mx tbody th{white-space:nowrap}
+.rpick{border:0;background:none;color:var(--c);font:600 13.5px var(--f-body);cursor:pointer;padding:0;text-align:left}
+.legend{font-size:13px;color:var(--mute);margin:8px 0 0}
+.rcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:16px}
+.rc{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--c);border-radius:10px;padding:14px 16px;font-size:13.5px;min-width:0}
+.rc h3{font-size:16px;color:var(--c)}
+.rc p{margin:2px 0 6px;color:var(--mute)}
+.rc h4{font:600 12px var(--f-disp);letter-spacing:.05em;text-transform:uppercase;margin:10px 0 4px}
+.rc ul{margin:0;padding-left:18px}
+.rc .sm{font-size:13px}
+/* steps */
+.step{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px;margin-top:22px;box-shadow:var(--shadow);transition:opacity .2s}
+.step.dim{opacity:.38}
+.step.mine{border-color:var(--sel,var(--accent));box-shadow:0 0 0 1px var(--sel,var(--accent)),var(--shadow)}
+.sh{display:flex;gap:16px;align-items:center}
+.sn{font:700 18px var(--f-mono);color:var(--paper);background:var(--navy);border-radius:10px;min-width:54px;height:46px;display:grid;place-items:center;padding-inline:8px}
+.st h3{font-size:21px}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.pill{font-size:12.5px;border-radius:999px;padding:2px 10px;border:1px solid var(--line)}
+.pill.role{color:var(--c);border-color:var(--c);font-weight:600}
+.pill.sla{font-family:var(--f-mono);font-size:12px}
+.you{margin-top:14px;background:color-mix(in srgb,var(--sel,var(--accent)) 10%,var(--paper));border-left:3px solid var(--sel,var(--accent));padding:8px 12px;border-radius:6px;font-size:14px}
+.w5{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:16px 0 0}
+.w5>div{background:var(--paper);padding:10px 12px;min-width:0}
+.w5 dt{font:600 11.5px var(--f-disp);letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.w5 dd{margin:2px 0 0;font-size:14px}
+.who{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip-s{font-size:12.5px;background:var(--soft);border-radius:6px;padding:3px 9px;color:var(--mute)}
+.chip-s b{color:var(--c);font-weight:600}
+.links{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-size:13.5px}
+.links .ll{font:600 11.5px var(--f-disp);letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.links a{border:1px solid var(--line);border-radius:6px;padding:3px 10px;text-decoration:none;font-weight:500}
+.links a:hover{border-color:var(--accent)}
+.blk{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+.blk h4{font-size:16.5px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.tk{font:500 12px var(--f-mono);color:var(--mute)}
+.fig{margin:12px 0 0}
+.anno{position:relative;display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:zoom-in;background:var(--soft)}
+.anno img{display:block;width:100%;height:auto}
+.mk{position:absolute;width:0;height:0;pointer-events:none}
+.mk::before{content:"";position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--mk);box-shadow:0 0 0 2px var(--paper)}
+.mk b{position:absolute;left:0;top:0;width:clamp(18px,1.9vw,24px);height:clamp(18px,1.9vw,24px);border-radius:50%;background:var(--mk);color:var(--mk-ink);font:700 clamp(10px,1vw,13px)/1 var(--f-mono);display:grid;place-items:center;box-shadow:0 0 0 2px var(--paper),0 2px 6px rgba(0,0,0,.35);transform:translate(calc(-100% - 6px),-50%)}
+.mk.r b{transform:translate(6px,-50%)}
+.mk.b b{transform:translate(-50%,6px)}
+.bx{position:absolute;border:2px solid var(--mk);border-radius:6px;pointer-events:none}
+figcaption{font-size:12.5px;color:var(--mute);margin-top:6px}
+ol.acts{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 22px}
+ol.acts li{display:flex;gap:10px;align-items:flex-start;min-width:0}
+ol.acts .n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--mk);color:var(--mk-ink);font:700 12px/22px var(--f-mono);text-align:center;margin-top:1px}
+ol.plain{margin:10px 0 0;padding-left:22px}
+ol.plain li{margin-bottom:4px}
+.note{margin:20px 0 0;background:var(--warnbg);border-left:3px solid var(--warn);padding:10px 14px;border-radius:6px;font-size:14px}
+.reply{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin-top:14px}
+.rbox{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px;min-width:0}
+.rbox b{display:block;font-family:var(--f-disp);margin-bottom:2px}
+.rarrow{color:var(--mute);font-size:20px}
+.mono{font-family:var(--f-mono);font-size:13px}
+td.flag{color:var(--warn);font-weight:600}
+.issues{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.issues li{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--warn);border-radius:8px;padding:10px 14px;font-size:14px}
+.issues b{font-family:var(--f-disp)}
+details{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-top:8px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--mute)}
+footer{margin-top:40px;color:var(--mute);font-size:13px}
+.lbox{position:fixed;inset:0;z-index:50;background:rgba(5,12,25,.88);display:grid;place-items:center;padding:24px;cursor:zoom-out}
+.lbox .anno{width:min(96vw,2200px);cursor:zoom-out;border:0}
+.lbox .cls{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:16px;background:var(--paper);color:var(--ink);border:0;border-radius:8px;padding:6px 12px;font:600 14px var(--f-body);cursor:pointer}
+@media (max-width:980px){.wrap{grid-template-columns:minmax(0,1fr)}.toc{display:none}}
+@media (max-width:700px){
+  .roles{order:3;flex:1 1 100%;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px} .chip{flex:none} .bar{gap:8px;padding-block:8px}
+  .w5{grid-template-columns:minmax(0,1fr)} ol.acts{grid-template-columns:minmax(0,1fr)}
+  .reply{grid-template-columns:minmax(0,1fr)} .rarrow{transform:rotate(90deg);justify-self:center}
+  .step{padding:16px} .bar .brand i{display:none} .roles .lb{display:none}
+}
+</style>
+
+<div class="bar">
+  <div class="brand">Base E-office <i>· VPTCT Vinaconex</i></div>
+  <div class="roles" role="group" aria-label="Lọc theo vai trò"><span class="lb">Tôi là</span>{{chips}}</div>
+  <button type="button" class="tbtn" id="theme" aria-label="Đổi giao diện sáng tối">◐ Sáng/Tối</button>
+</div>
+
+<div class="wrap">
+{{toc}}
+<main>
+<header class="hero">
+  <span class="eyebrow">Hướng dẫn sử dụng · Văn phòng Tổng công ty</span>
+  <h1>Xử lý công văn đến và đi trên E-office</h1>
+  <p class="lead">Mỗi bước có ảnh chụp màn hình thật, số đỏ trên ảnh khớp với số thao tác bên dưới. Bấm ảnh để phóng to, bấm "Mở màn hình này" để mở đúng màn hình trên E-office.</p>
+  <div class="paths">
+    <a class="path" href="#tong-quan"><b>① Xem toàn bộ luồng</b><span>Văn bản đi qua những bước nào, ai làm, hạn bao lâu.</span></a>
+    <a class="path" href="#den"><b>② Tìm việc của bạn</b><span>Chọn vai trò ở thanh trên cùng, các bước không liên quan sẽ mờ đi.</span></a>
+    <a class="path" href="#d1"><b>③ Làm theo bước 1</b><span>Văn thư bắt đầu từ tạo văn bản đến.</span></a>
+  </div>
+  <div class="quick">
+    <a href="{{L_in_k}}" target="_blank" rel="noopener">Công văn đến ↗</a>
+    <a href="{{L_out_k}}" target="_blank" rel="noopener">Công văn đi ↗</a>
+    <a href="{{L_docs}}" target="_blank" rel="noopener">Văn bản của tôi ↗</a>
+    <a href="{{L_appr}}" target="_blank" rel="noopener">Phê duyệt &amp; Ký ↗</a>
+    <a href="{{L_cnt}}" target="_blank" rel="noopener">Sổ cấp số ↗</a>
+  </div>
+</header>
+
+<section class="part" id="tong-quan">
+  <div class="ph"><span class="rn">I</span><h2>Tổng quan</h2></div>
+  <p class="intro">Hai quy trình chạy trên ứng dụng Văn phòng. Bấm một ô trên luồng để nhảy tới hướng dẫn của bước đó.</p>
+  <h3 class="sub">Văn bản đến · 6 bước</h3>
+  {{ov_in}}
+  <h3 class="sub">Văn bản đi · 7 bước</h3>
+  {{ov_out}}
+  <h3 class="sub">Từ văn bản đến sang văn bản đi</h3>
+  <div class="reply">
+    <div class="rbox"><b>Văn bản đến · bước 4</b>Đơn vị chủ trì chọn Tạo phúc đáp ở việc Thực hiện theo ý kiến phê duyệt.</div>
+    <div class="rarrow">→</div>
+    <div class="rbox"><b>Văn bản đi mới</b>Tên bắt đầu bằng "Phúc đáp:", nằm ở bước Soạn công văn.</div>
+    <div class="rarrow">→</div>
+    <div class="rbox"><b>Hai văn bản liên kết</b>Mục Văn bản liên quan ở mỗi bên mở sang bên kia.</div>
+  </div>
+</section>
+
+<section class="part" id="den">
+  <div class="ph"><span class="rn">II</span><h2>Văn bản đến</h2></div>
+  <p class="intro">Văn thư tiếp nhận → Thư ký tiếp nhận → BLĐ bút phê → Đơn vị chủ trì nhận văn bản → Hoàn tất → Lưu trữ. Ảnh minh hoạ lấy từ văn bản mẫu 2/2026 "Thông báo khởi công xây dựng…".</p>
+  {{steps_in}}
+</section>
+
+<section class="part" id="di">
+  <div class="ph"><span class="rn">III</span><h2>Văn bản đi</h2></div>
+  <p class="intro">Soạn công văn → Lãnh đạo Ban kiểm tra → Thư ký kiểm tra → BLĐ ký → Cấp số → Đã ban hành → Lưu trữ.</p>
+  {{steps_out}}
+</section>
+
+<section class="part" id="phu-luc">
+  <div class="ph"><span class="rn">IV</span><h2>Phụ lục</h2></div>
+  <h3 class="sub" style="margin-top:0">Ai nhận việc ở bước 4 văn bản đến</h3>
+  <p class="intro">Thư ký hoặc văn thư chọn Phòng ban chủ trì, hệ thống tự giao việc cho người tương ứng. Theo cấu hình ngày 06/10/2026.</p>
+  <div class="tw"><table><thead><tr><th>Phòng ban chủ trì</th><th>Người nhận việc</th></tr></thead><tbody>{{rules}}</tbody></table></div>
+
+  <h3 class="sub">Phân quyền hai dịch vụ</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Dịch vụ</th><th>Người phụ trách (toàn quyền)</th><th>Người vận hành</th><th>Người theo dõi (chỉ xem)</th></tr></thead>
+    <tbody>
+      <tr><td>VPTCT - Công văn đến</td><td>Thành Bùi, Nguyễn Thị Thu Huyền, Dương Đức Vũ</td><td>Nguyễn Thị Thu Huyền</td><td>Nguyễn Xuân Đông, Nguyễn Thị Quỳnh Trang</td></tr>
+      <tr><td>VPTCT - Công văn đi</td><td>Dương Đức Vũ, Cao Thị Như Quỳnh</td><td>Chưa có</td><td>Đặng Quốc Khánh</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 class="sub">Thời hạn từng bước</h3>
+  <p class="intro">Tính từ lúc văn bản vào bước. Lọc biểu tượng ⚠ trên kanban để thấy văn bản quá hạn.</p>
+  <div class="tw"><table><thead><tr><th>Mức</th><th>Bước</th></tr></thead><tbody>
+    <tr><td class="mono">8 giờ</td><td>Văn thư tiếp nhận, Cấp số</td></tr>
+    <tr><td class="mono">24 giờ</td><td>Thư ký tiếp nhận, Đơn vị chủ trì, Soạn công văn, Lãnh đạo Ban kiểm tra, Thư ký kiểm tra, BLĐ ký</td></tr>
+    <tr><td class="mono">48 giờ</td><td>BLĐ bút phê</td></tr>
+  </tbody></table></div>
+
+  <h3 class="sub" id="can-xac-nhan">Điểm cần Vinaconex xác nhận</h3>
+  <ul class="issues">
+    <li><b>Số văn bản đi còn chữ {text}.</b> Văn bản mẫu được cấp số <code>1/2026/NQ-{text}</code>. Mẫu số của sổ cần thay {text} bằng ký hiệu thật hoặc cho văn thư nhập. <a href="{{L_d_num}}" target="_blank" rel="noopener">Xem văn bản ↗</a></li>
+    <li><b>Ban Quản lý Tòa nhà Vinaconex chưa có quy tắc giao việc.</b> Văn bản chọn đơn vị này sẽ không tự giao ở bước 4.</li>
+    <li><b>Việc Bút phê ở bước Thư ký tiếp nhận chưa có quy tắc người làm</b> (hiện "admin tự gán"). Cần chốt người bút phê mặc định.</li>
+    <li><b>Yêu cầu cấp số còn treo.</b> Sổ cấp số còn 3 yêu cầu Chờ xử lý, trong đó văn bản 2/2026 đã hiện số. Văn thư nên rà và đóng yêu cầu thừa. <a href="{{L_cnt}}" target="_blank" rel="noopener">Mở Sổ cấp số ↗</a></li>
+  </ul>
+
+  <h3 class="sub" id="hoi-nhanh">Hỏi nhanh</h3>
+  <details><summary>Tôi không thấy văn bản của mình</summary><p>Mở Văn bản và lọc người xử lý. Vẫn không có thì bạn chưa được giao việc ở bước đó. Nhờ Thư ký hoặc người phụ trách dịch vụ dùng Phân công người thực hiện.</p></details>
+  <details><summary>Nút Chuyển bước không bấm được</summary><p>Còn việc có nhãn Bắt buộc chưa xong. Tìm việc đang ở trạng thái Đang chờ và nhắc người được giao. Việc giao nhiều người thì tất cả phải xong.</p></details>
+  <details><summary>Nhãn "Chưa vào sổ" nghĩa là gì?</summary><p>Văn bản chưa có số nội bộ. Số xuất hiện sau việc Đánh số VB (văn bản đến) hoặc Đăng ký và cấp số văn bản (văn bản đi).</p></details>
+  <details><summary>Muốn trả văn bản về bước trước</summary><p>Bấm mũi tên cạnh Chuyển bước, chọn Trả lại. Ghi lý do để người ở bước trước biết cần sửa gì.</p></details>
+  <details><summary>Tôi đi vắng thì ai xử lý thay?</summary><p>Dùng Uỷ quyền trong Cài đặt của E-office, hoặc nhờ người phụ trách dịch vụ phân công lại.</p></details>
+</section>
+<footer>Ảnh chụp từ E-office của Vinaconex ngày 06/10/2026, trên các văn bản thử nghiệm. Tên người, đơn vị và thời hạn thay đổi khi cấu hình được cập nhật.</footer>
+</main>
+</div>
+
+<script>
+(function(){
+var IMG={{imgs}};
+var RT={{rt}}, RN={{rn}};
+document.querySelectorAll('img[data-k]').forEach(function(im){im.src=IMG[im.getAttribute('data-k')]});
+
+/* theme */
+var root=document.documentElement;
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+var th=store('eo-theme'); if(th) root.setAttribute('data-theme',th);
+document.getElementById('theme').addEventListener('click',function(){
+  var dark=root.getAttribute('data-theme')? root.getAttribute('data-theme')==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  var n=dark?'light':'dark'; root.setAttribute('data-theme',n); store('eo-theme',n);
+});
+
+/* role filter */
+var cur=null;
+function apply(r){
+  cur=r;
+  if(r) root.style.setProperty('--sel','var(--r-'+r+')'); else root.style.removeProperty('--sel');
+  document.querySelectorAll('.chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-r')===r?'true':'false')});
+  document.querySelectorAll('.step').forEach(function(s){
+    var has=r && (s.getAttribute('data-roles').split(' ').indexOf(r)>=0 || r==='quantri');
+    s.classList.toggle('dim',!!r && !has);
+    s.classList.toggle('mine',!!r && has && r!=='quantri');
+    var y=s.querySelector('.you');
+    if(r && has && RT[s.id][r]){y.hidden=false;y.innerHTML='<b>'+RN[r]+' ở bước này:</b> '+RT[s.id][r]}
+    else if(r && !has){y.hidden=false;y.textContent=RN[r]+' không tham gia bước này.'}
+    else y.hidden=true;
+  });
+  document.querySelectorAll('.chev,.cell,.toc a[data-roles]').forEach(function(e){
+    var has=!r || r==='quantri' || e.getAttribute('data-roles').split(' ').indexOf(r)>=0;
+    e.classList.toggle('dim',!has);
+  });
+  store('eo-role',r||'');
+}
+document.querySelectorAll('.chip,.rpick').forEach(function(c){
+  c.addEventListener('click',function(){var r=c.getAttribute('data-r');apply(cur===r?null:r)});
+});
+var saved=store('eo-role'); if(saved) apply(saved);
+
+/* lightbox */
+var lb=null;
+function close(){if(lb){lb.remove();lb=null;document.body.style.overflow=''}}
+document.querySelectorAll('main .anno').forEach(function(a){
+  a.addEventListener('click',function(){
+    lb=document.createElement('div');lb.className="lbox";lb.setAttribute('role','dialog');lb.setAttribute('aria-label','Ảnh phóng to');
+    var c=a.cloneNode(true);c.removeAttribute('aria-label');lb.appendChild(c);
+    var b=document.createElement('button');b.className='cls';b.type='button';b.textContent='Đóng ✕';lb.appendChild(b);
+    lb.addEventListener('click',close);document.body.appendChild(lb);document.body.style.overflow='hidden';b.focus();
+  });
+});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+})();
+</script>
