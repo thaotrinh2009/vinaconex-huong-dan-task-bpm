@@ -1,14 +1,17 @@
 # Hướng dẫn sử dụng Base — Vinaconex
 
-| Trang | Đường dẫn | Nội dung |
+Trang chính `index.html` có 2 tab:
+
+| Tab | Nguồn | Nội dung |
 |---|---|---|
-| App Công việc & BPM | `/` (`index.html`) | Hướng dẫn 1 trang (song ngữ VI/EN) cho task.base.vn và bpm.base.vn |
-| E-office VPTCT | `/eoffice` (`eoffice/index.html`) | Xử lý Công văn đến (6 bước) và Công văn đi (7 bước) theo vai trò, ảnh chụp thật có đánh số thao tác |
+| App Công việc & BPM | `bpm/index.html` | Hướng dẫn task.base.vn và bpm.base.vn (song ngữ VI/EN) |
+| E-office · Công văn đến, đi | `eoffice/index.html` | Công văn đến 6 bước, công văn đi 7 bước, ảnh chụp thật có đánh số |
 
-Deploy: import repo này vào Vercel → Deploy.
+Mở thẳng một tab: thêm `#bpm` hoặc `#eoffice` vào cuối địa chỉ.
 
-## Cập nhật trang E-office
-- `eoffice/anh/`: 25 ảnh chụp màn hình E-office (1568×746).
-- `eoffice/src/data.py`: nội dung từng bước, vai trò, link E-office.
-- `eoffice/src/coords.py`: vị trí ghim số trên từng ảnh.
-- Chạy `python3 eoffice/src/build.py` để dựng lại `eoffice/index.html`.
+## Sửa nội dung
+1. Sửa `bpm/index.html` hoặc `eoffice/index.html` (trang E-office dựng từ `eoffice/src/`, chạy `python3 eoffice/src/build.py`).
+2. Chạy `python3 build_tabs.py` để gộp lại thành `index.html`.
+3. Đẩy lên GitHub. Vercel/GitHub Pages tự cập nhật.
+
+`index.html` chứa sẵn cả 2 trang và toàn bộ ảnh, nên cũng có thể tải riêng file này lên Vercel.
