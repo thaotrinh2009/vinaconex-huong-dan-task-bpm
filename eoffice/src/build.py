@@ -9,10 +9,11 @@ W, H = 1568, 746
 
 def pct(v, t): return '%.2f%%' % (v * 100.0 / t)
 
+IMGS = {}
 def anno(key, marks, boxes):
     f, cap, lk = SHOT[key]
     s = '<figure class="fig"><button type="button" class="anno" aria-label="Phóng to ảnh: %s">' % html.escape(cap)
-    s += '<img data-k="%s" width="%d" height="%d" alt="%s" loading="lazy">' % (key, W, H, html.escape(cap))
+    s += '<img src="%s" width="%d" height="%d" alt="%s" decoding="async">' % (IMGS[key], W, H, html.escape(cap))
     for (x0, y0, x1, y1) in boxes:
         s += '<span class="bx" style="left:%s;top:%s;width:%s;height:%s"></span>' % (pct(x0, W), pct(y0, H), pct(x1 - x0, W), pct(y1 - y0, H))
     for i, m in enumerate(marks):
@@ -119,6 +120,8 @@ def imgs():
         d[k] = 'data:image/jpeg;base64,' + base64.b64encode(open(os.path.join(SHOTS, f), 'rb').read()).decode()
     return json.dumps(d)
 
+for _k, (_f, _c, _l) in SHOT.items():
+    IMGS[_k] = 'data:image/jpeg;base64,' + base64.b64encode(open(os.path.join(SHOTS, _f), 'rb').read()).decode()
 t = open(os.path.join(HERE, 'template.html'), encoding='utf-8').read()
 rules = ''.join('<tr><td>%s</td><td%s>%s</td></tr>' % (html.escape(a), ' class="flag"' if b.startswith('Chưa') else '', html.escape(b)) for a, b in RULES)
 chips = ''.join('<button type="button" class="chip" data-r="%s" aria-pressed="false" style="--c:var(--r-%s)">%s</button>' % (r, r, ROLES[r][0]) for r in ORDER)
@@ -130,7 +133,7 @@ rep = {
  '{{steps_in}}': ''.join(step(s, 'in') for s in IN), '{{steps_out}}': ''.join(step(s, 'out') for s in OUT),
  '{{rules}}': rules, '{{L_in_k}}': L['in_k'], '{{L_out_k}}': L['out_k'], '{{L_docs}}': L['docs'], '{{L_appr}}': L['appr'],
  '{{L_in_new}}': L['in_new'], '{{L_out_new}}': L['out_new'], '{{L_cnt}}': L['cnt'], '{{L_d_num}}': L['d_num'], '{{L_d_in}}': L['d_in'],
- '{{rt}}': json.dumps(rt, ensure_ascii=False), '{{rn}}': json.dumps(rn, ensure_ascii=False), '{{imgs}}': imgs(),
+ '{{rt}}': json.dumps(rt, ensure_ascii=False), '{{rn}}': json.dumps(rn, ensure_ascii=False), 
 }
 for k, v in rep.items():
     t = t.replace(k, v)
