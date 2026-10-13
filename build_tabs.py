@@ -7,6 +7,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 TABS = [
     ('bpm', 'App Công việc & BPM', 'bpm/index.html'),
     ('eoffice', 'E-office · Công văn đến, đi', 'eoffice/index.html'),
+    ('booking', 'Booking · Đặt xe, phòng họp', 'booking/index.html'),
 ]
 
 FIX = '''<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var id=decodeURIComponent(a.getAttribute('href').slice(1));e.preventDefault();var t=id?document.getElementById(id):null;if(t)t.scrollIntoView({behavior:'smooth',block:'start'});else if(!id)window.scrollTo(0,0)},true);</script>'''
