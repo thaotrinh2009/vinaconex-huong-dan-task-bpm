@@ -10,7 +10,7 @@
   --auto:#9A5B00; --auto-soft:#FBF0DC; --ok:#17734A; --ok-soft:#E2F4EA; --mk:#D3291C; --shade:rgba(20,27,45,.55);
   --font:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+@media (prefers-color-scheme:dark){:root[data-theme="__never__"]{
   --bg:#0D121E; --bg2:#121828; --surface:#171D2E; --ink:#E7EBF4; --muted:#9BA6BC; --line:#2A3348;
   --brand:#8FAEFF; --brand-soft:#1B2644; --on-brand:#0D121E;
   --xe:#A99CFF; --xe-soft:#221F45; --ph:#74B4FF; --ph-soft:#152A45;
@@ -251,7 +251,7 @@ footer{margin-top:44px;color:var(--muted);font-size:13px;border-top:1px solid va
   var root=document.documentElement;
   // theme
   document.getElementById('theme').addEventListener('click',function(){
-    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var cur=root.getAttribute('data-theme')||(false?'dark':'light');
     root.setAttribute('data-theme',cur==='dark'?'light':'dark');
   });
   // mobile contents

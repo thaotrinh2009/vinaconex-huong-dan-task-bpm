@@ -5,7 +5,7 @@ import html, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TABS = [
-    ('task', 'App Công việc', 'task/index.html'),
+    ('task', 'Task', 'task/index.html'),
     ('eoffice', 'E-office · Công văn đến, đi', 'eoffice/index.html'),
     ('booking', 'Booking · Đặt xe, phòng họp', 'booking/index.html'),
 ]
@@ -33,7 +33,6 @@ page = """<!doctype html>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700&display=swap">
 <style>
 :root{--bar:#ffffff;--ink:#122038;--mute:#56657d;--line:#d9e1ec;--navy:#003989;--on:#ffffff;color-scheme:light}
-@media (prefers-color-scheme: dark){:root{--bar:#131d2e;--ink:#e6edf8;--mute:#9aabc4;--line:#26354d;--navy:#8fb4ff;--on:#0c1320;color-scheme:dark}}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
 body{background:var(--bar);color:var(--ink);font:500 14px "Lexend",system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;flex-direction:column}

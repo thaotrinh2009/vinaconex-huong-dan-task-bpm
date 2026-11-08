@@ -11,7 +11,7 @@
   --f-disp:"Lexend",system-ui,sans-serif; --f-body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
   --shadow:0 1px 2px rgba(10,30,70,.06),0 6px 20px rgba(10,30,70,.06);
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+@media (prefers-color-scheme: dark){:root[data-theme="__never__"]{
   --bg:#0c1320; --paper:#131d2e; --ink:#e6edf8; --mute:#9aabc4; --line:#26354d; --soft:#1a2740;
   --navy:#8fb4ff; --accent:#6ea3ff; --mk:#ff5a4c; --mk-ink:#140b0a; --ok:#4cc999; --warn:#f3a64a; --warnbg:#2a1f10;
   --r-vanthu:#6ea3ff; --r-thuky:#b48cff; --r-lanhdao:#ff9a5c; --r-donvi:#4cc999; --r-nguoisoan:#ff7ab8; --r-quantri:#a3b2c7;
@@ -269,7 +269,7 @@ var root=document.documentElement;
 function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
 var th=store('eo-theme'); if(th) root.setAttribute('data-theme',th);
 document.getElementById('theme').addEventListener('click',function(){
-  var dark=root.getAttribute('data-theme')? root.getAttribute('data-theme')==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  var dark=root.getAttribute('data-theme')? root.getAttribute('data-theme')==='dark' : false;
   var n=dark?'light':'dark'; root.setAttribute('data-theme',n); store('eo-theme',n);
 });
 
