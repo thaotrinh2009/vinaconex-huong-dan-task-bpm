@@ -4,7 +4,7 @@ Trang chính `index.html` có 3 tab:
 
 | Tab | Nguồn | Nội dung |
 |---|---|---|
-| Task | `task/index.html` | Hướng dẫn task.base.vn: 8 bước theo 4 vai trò (ủy quyền, giao việc vào Phòng, nộp – duyệt, theo dõi việc đã giao, đánh giá), tra cứu 27 tình huống, song ngữ VI/EN |
+| Task | `task/index.html` | Hướng dẫn task.base.vn: 8 bước theo 4 vai trò (ủy quyền, giao việc vào Phòng, giao việc lặp lại bằng Lịch trình, quyền người theo dõi, nộp – duyệt, theo dõi việc đã giao, đánh giá), tra cứu 29 tình huống, song ngữ VI/EN |
 | E-office · Công văn đến, đi | `eoffice/index.html` | Công văn đến 6 bước, công văn đi 7 bước, ảnh chụp thật có đánh số |
 | Booking · Đặt xe, phòng họp | `booking/index.html` | Đặt xe 8 bước, đặt phòng họp 7 bước trên Booking, BPM, Task |
 
