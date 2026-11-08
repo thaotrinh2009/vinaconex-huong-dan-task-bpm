@@ -11,7 +11,7 @@ Trang chính `index.html` có 3 tab:
 Mở thẳng một tab: thêm `#task`, `#eoffice` hoặc `#booking` (link cũ `#bpm` tự chuyển sang `#task`) vào cuối địa chỉ.
 
 ## Sửa nội dung
-1. Sửa `task/index.html`, `eoffice/index.html` hoặc `booking/index.html` (trang E-office dựng từ `eoffice/src/`, chạy `python3 eoffice/src/build.py`).
+1. Sửa `task/index.html`, `eoffice/index.html` hoặc `booking/index.html` (trang E-office dựng từ `eoffice/src/`, chạy `python3 eoffice/src/build.py`; trang Task dựng từ `task/src/` — sửa `content.py`, ảnh gốc để ở `task/src/img/`, chạy `annos.py` rồi `build.py`).
 2. Chạy `python3 build_tabs.py` để gộp lại thành `index.html`.
 3. Đẩy lên GitHub. Vercel/GitHub Pages tự cập nhật.
 
