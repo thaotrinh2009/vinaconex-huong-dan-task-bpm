@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """Gộp các trang hướng dẫn thành index.html có nhiều tab.
-Chạy: python3 build_tabs.py  (đọc task/, eoffice/, booking/index.html)"""
+Chạy: python3 build_tabs.py  (đọc task/, bpm/, eoffice/, booking/index.html)"""
 import html, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TABS = [
     ('task', 'Task', 'task/index.html'),
+    ('bpm', 'BPM · Quy trình phê duyệt', 'bpm/index.html'),
     ('eoffice', 'E-office · Công văn đến, đi', 'eoffice/index.html'),
     ('booking', 'Booking · Đặt xe, phòng họp', 'booking/index.html'),
 ]
@@ -62,7 +63,6 @@ iframe[hidden]{display:none}
 (function(){
   var btns=[].slice.call(document.querySelectorAll('.tabs button'));
   function show(k,push){
-    if(k==='bpm') k='task';
     if(!document.getElementById('p-'+k)) k=btns[0].getAttribute('data-k');
     btns.forEach(function(b){
       var on=b.getAttribute('data-k')===k;

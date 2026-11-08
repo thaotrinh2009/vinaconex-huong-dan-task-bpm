@@ -1,1 +1,5 @@
 __pycache__/
+bpm/src/out/
+bpm/src/qa/
+bpm/src/img_out/
+bpm/src/web/
