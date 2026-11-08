@@ -9,6 +9,7 @@ TABS = [
     ('bpm', 'BPM · Quy trình phê duyệt', 'bpm/index.html'),
     ('eoffice', 'E-office · Công văn đến, đi', 'eoffice/index.html'),
     ('booking', 'Booking · Đặt xe, phòng họp', 'booking/index.html'),
+    ('meeting', 'Cuộc họp', 'meeting/index.html'),
 ]
 
 import base64
