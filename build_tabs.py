@@ -10,6 +10,9 @@ TABS = [
     ('booking', 'Booking · Đặt xe, phòng họp', 'booking/index.html'),
 ]
 
+import base64
+LOGO = 'data:image/png;base64,' + base64.b64encode(open(os.path.join(HERE, 'vcx_logo.png'), 'rb').read()).decode()
+
 FIX = '''<script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;var id=decodeURIComponent(a.getAttribute('href').slice(1));e.preventDefault();var t=id?document.getElementById(id):null;if(t)t.scrollIntoView({behavior:'smooth',block:'start'});else if(!id)window.scrollTo(0,0)},true);</script>'''
 frames, buttons = [], []
 for i, (key, label, path) in enumerate(TABS):
@@ -38,7 +41,7 @@ html,body{height:100%;margin:0}
 body{background:var(--bar);color:var(--ink);font:500 14px "Lexend",system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;flex-direction:column}
 .top{display:flex;align-items:center;gap:18px;padding:8px 16px;padding-top:calc(8px + env(safe-area-inset-top,0px));border-bottom:1px solid var(--line);background:var(--bar);flex:none;flex-wrap:wrap}
 .brand{font-weight:700;font-size:16px;color:var(--navy);white-space:nowrap}
-.brand span{color:var(--mute);font-weight:500}
+.brand{display:flex;align-items:center;gap:8px}.brand i{font-style:normal;color:var(--mute);font-weight:500}.brand img.vcx{height:38px;width:auto;display:block;background:#fff;border-radius:6px;padding:2px 4px}.brand span{color:var(--mute);font-weight:500}
 .tabs{display:flex;gap:6px;flex-wrap:wrap}
 .tabs button{font:600 14px "Lexend",system-ui,sans-serif;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer}
 .tabs button:hover{border-color:var(--navy)}
@@ -51,7 +54,7 @@ iframe[hidden]{display:none}
 </head>
 <body>
 <header class="top">
-  <div class="brand">Base.vn × Vinaconex <span>· Hướng dẫn sử dụng</span></div>
+  <div class="brand">Base.vn <i>×</i> <img class="vcx" src="__LOGO__" alt="Vinaconex"> <span>· Hướng dẫn sử dụng</span></div>
   <nav class="tabs" role="tablist" aria-label="Chọn tài liệu">""" + ''.join(buttons) + """</nav>
 </header>
 """ + '\n'.join(frames) + """
@@ -76,5 +79,6 @@ iframe[hidden]{display:none}
 </body>
 </html>
 """
+page = page.replace('__LOGO__', LOGO)
 open(os.path.join(HERE, 'index.html'), 'w', encoding='utf-8').write(page)
 print('index.html', os.path.getsize(os.path.join(HERE, 'index.html')))
